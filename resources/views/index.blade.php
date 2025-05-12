@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Welcome to Index file.</h1>
+    <h1>Welcome to Index file.</h1>
     <p>This is the index page of the application.</p>
     <p>Here you can find various resources and links to navigate through the application.</p>
 </body>
