@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class MemberRequest extends FormRequest
 {
@@ -32,6 +33,30 @@ class MemberRequest extends FormRequest
         $this->merge([
             'user_id' => $this->route('user_id'),
             'group_id' => $this->route('group_id'),
+            'role' => Str::slug($this->input('role')),
         ]);
+    }
+    protected $stopOnFirstFilure = true;
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => 'error',
+            'message' => 'Validation failed',
+            'errors' => $validator->errors(),
+        ], 422));
+    }
+    public function messages()
+    {
+        return [
+            'user_id.required' => 'The user ID is required.',
+            'user_id.integer' => 'The user ID must be an integer.',
+            'user_id.exists' => 'The selected user ID does not exist.',
+            'group_id.required' => 'The group ID is required.',
+            'group_id.integer' => 'The group ID must be an integer.',
+            'group_id.exists' => 'The selected group ID does not exist.',
+            'role.required' => 'The role is required.',
+            'role.string' => 'The role must be a string.',
+            'role.in' => 'The selected role is invalid.',
+        ];
     }
 }
