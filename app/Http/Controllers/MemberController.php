@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use App\Http\Controllers\Controller;
 
 class MemberController extends Controller
 {
@@ -13,7 +15,25 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::all();
+        $result  = $members->map(function ($member) {
+            return $member->email;
+        });
+        dd($members->pluck('email')->toArray());
+        // $collection = collect([1, 2, 3]);
+        // return $collection->map(function ($item) {
+        //     return $item * 2;
+        // });
+        // Collection::macro('toUpper', function () {
+        //     return $this->map(function (string $value) {
+        //         return Str::upper($value);
+        //     });
+        // });
+        // $collection = collect(['first', 'second']);
+ 
+        // $upper = $collection->toUpper();
+        // return $upper;
+
     }
 
     /**

@@ -20,3 +20,4 @@ Route::get('/', function () {
 // Route::resource('users',UserController::class);
 // Route::resource('posts',PostController::class);
 Route::resource('users.comments', CommentController::class)->shallow();
+Route::resource('members', MemberController::class);
