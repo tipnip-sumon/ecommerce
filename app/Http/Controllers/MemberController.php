@@ -16,10 +16,13 @@ class MemberController extends Controller
     public function index()
     {
         $members = Member::all();
-        $result  = $members->map(function ($member) {
-            return $member->email;
+        $result = $members->map(function ($member) {
+            return $member->name;
         });
-        dd($members->pluck('email')->toArray());
+        return response()->json($members);
+
+        // dd($result->all());
+        // dd($members->pluck('email')->toArray());
         // $collection = collect([1, 2, 3]);
         // return $collection->map(function ($item) {
         //     return $item * 2;

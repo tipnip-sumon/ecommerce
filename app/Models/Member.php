@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Member extends Model
 {
@@ -15,4 +16,5 @@ class Member extends Model
         'address',
         'city',
     ];
+    use HasFactory;
 }
